@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1270px;
+            height: 811px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/PermetromunicipaldeLen_0.js"></script>
+        <script src="data/GradodeMarginacinUrbanaCONAPO2010_1.js"></script>
+        <script src="data/Carpetasabiertasporfeminicidioporcolonia20162020_2.js"></script>
+        <script src="data/EDEFeminicidios201615_3.js"></script>
+        <script src="data/EDEFeminicidios201728_4.js"></script>
+        <script src="data/EDEFeminicidios201828_5.js"></script>
+        <script src="data/EDEFeminicidios20197_6.js"></script>
+        <script src="data/FeminicidiosLen20162020_7.js"></script>
+        <script src="data/ZonasdeAtencinPrioritaria2018_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[20.85815440214409,-101.94787832917679],[21.35340386785424,-101.132631774227]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_PermetromunicipaldeLen_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['clave'] !== null ? autolinker.link(feature.properties['clave'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nombre'] !== null ? autolinker.link(feature.properties['nombre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['vio_int'] !== null ? autolinker.link(feature.properties['vio_int'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['emb_ado'] !== null ? autolinker.link(feature.properties['emb_ado'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['car_soc'] !== null ? autolinker.link(feature.properties['car_soc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bin_soc'] !== null ? autolinker.link(feature.properties['bin_soc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['per_ins'] !== null ? autolinker.link(feature.properties['per_ins'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mor_mat'] !== null ? autolinker.link(feature.properties['mor_mat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mor_dia'] !== null ? autolinker.link(feature.properties['mor_dia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mor_inf'] !== null ? autolinker.link(feature.properties['mor_inf'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['gra_esc'] !== null ? autolinker.link(feature.properties['gra_esc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rez_edu'] !== null ? autolinker.link(feature.properties['rez_edu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['des_edu'] !== null ? autolinker.link(feature.properties['des_edu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cal_edu'] !== null ? autolinker.link(feature.properties['cal_edu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['per_des'] !== null ? autolinker.link(feature.properties['per_des'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['exp_tra'] !== null ? autolinker.link(feature.properties['exp_tra'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['evs_epu'] !== null ? autolinker.link(feature.properties['evs_epu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cor_rup'] !== null ? autolinker.link(feature.properties['cor_rup'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['con_fia'] !== null ? autolinker.link(feature.properties['con_fia'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ing_pub'] !== null ? autolinker.link(feature.properties['ing_pub'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deu_pub'] !== null ? autolinker.link(feature.properties['deu_pub'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['plan_par'] !== null ? autolinker.link(feature.properties['plan_par'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['par_ele'] !== null ? autolinker.link(feature.properties['par_ele'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['inc_del'] !== null ? autolinker.link(feature.properties['inc_del'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mue_vio'] !== null ? autolinker.link(feature.properties['mue_vio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ini_mju'] !== null ? autolinker.link(feature.properties['ini_mju'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['evm_ipu'] !== null ? autolinker.link(feature.properties['evm_ipu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['esc_pea'] !== null ? autolinker.link(feature.properties['esc_pea'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cap_hum'] !== null ? autolinker.link(feature.properties['cap_hum'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cie_tec'] !== null ? autolinker.link(feature.properties['cie_tec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['inv_sni'] !== null ? autolinker.link(feature.properties['inv_sni'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pat'] !== null ? autolinker.link(feature.properties['pat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pro'] !== null ? autolinker.link(feature.properties['pro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['emp_pre'] !== null ? autolinker.link(feature.properties['emp_pre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['inf_lab'] !== null ? autolinker.link(feature.properties['inf_lab'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['acc_int'] !== null ? autolinker.link(feature.properties['acc_int'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['suf_via'] !== null ? autolinker.link(feature.properties['suf_via'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['exp_acu'] !== null ? autolinker.link(feature.properties['exp_acu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dis_agu'] !== null ? autolinker.link(feature.properties['dis_agu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tra_agu'] !== null ? autolinker.link(feature.properties['tra_agu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seq'] !== null ? autolinker.link(feature.properties['seq'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['efe_sal'] !== null ? autolinker.link(feature.properties['efe_sal'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['seg_ali'] !== null ? autolinker.link(feature.properties['seg_ali'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['deg_sue'] !== null ? autolinker.link(feature.properties['deg_sue'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['are_nat'] !== null ? autolinker.link(feature.properties['are_nat'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['exp_rec'] !== null ? autolinker.link(feature.properties['exp_rec'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rez_soc'] !== null ? autolinker.link(feature.properties['rez_soc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['con_pob'] !== null ? autolinker.link(feature.properties['con_pob'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['dis_pob'] !== null ? autolinker.link(feature.properties['dis_pob'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cont_urb'] !== null ? autolinker.link(feature.properties['cont_urb'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['emi_gei'] !== null ? autolinker.link(feature.properties['emi_gei'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['par_veh'] !== null ? autolinker.link(feature.properties['par_veh'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['hac'] !== null ? autolinker.link(feature.properties['hac'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['mar_urb'] !== null ? autolinker.link(feature.properties['mar_urb'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['rez_hab'] !== null ? autolinker.link(feature.properties['rez_hab'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PermetromunicipaldeLen_0_0() {
+            return {
+                pane: 'pane_PermetromunicipaldeLen_0',
+                opacity: 1,
+                color: 'rgba(77,175,74,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PermetromunicipaldeLen_0');
+        map.getPane('pane_PermetromunicipaldeLen_0').style.zIndex = 400;
+        map.getPane('pane_PermetromunicipaldeLen_0').style['mix-blend-mode'] = 'normal';
+        var layer_PermetromunicipaldeLen_0 = new L.geoJson(json_PermetromunicipaldeLen_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PermetromunicipaldeLen_0',
+            layerName: 'layer_PermetromunicipaldeLen_0',
+            pane: 'pane_PermetromunicipaldeLen_0',
+            onEachFeature: pop_PermetromunicipaldeLen_0,
+            style: style_PermetromunicipaldeLen_0_0,
+        });
+        bounds_group.addLayer(layer_PermetromunicipaldeLen_0);
+        map.addLayer(layer_PermetromunicipaldeLen_0);
+        function pop_GradodeMarginacinUrbanaCONAPO2010_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CVEGEO'] !== null ? autolinker.link(feature.properties['CVEGEO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CVE_AGEB'] !== null ? autolinker.link(feature.properties['CVE_AGEB'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['POB_2010'] !== null ? autolinker.link(feature.properties['POB_2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND1'] !== null ? autolinker.link(feature.properties['IND1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND2'] !== null ? autolinker.link(feature.properties['IND2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND3'] !== null ? autolinker.link(feature.properties['IND3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND4'] !== null ? autolinker.link(feature.properties['IND4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND5'] !== null ? autolinker.link(feature.properties['IND5'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND6'] !== null ? autolinker.link(feature.properties['IND6'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND7'] !== null ? autolinker.link(feature.properties['IND7'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND8'] !== null ? autolinker.link(feature.properties['IND8'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND9'] !== null ? autolinker.link(feature.properties['IND9'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IND10'] !== null ? autolinker.link(feature.properties['IND10'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['IMU2010'] !== null ? autolinker.link(feature.properties['IMU2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GMU2010'] !== null ? autolinker.link(feature.properties['GMU2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Dens_Pob'] !== null ? autolinker.link(feature.properties['Dens_Pob'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEMICIDIOS'] !== null ? autolinker.link(feature.properties['FEMICIDIOS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TASA_FEMIC'] !== null ? autolinker.link(feature.properties['TASA_FEMIC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GradodeMarginacinUrbanaCONAPO2010_1_0(feature) {
+            switch(String(feature.properties['GMU2010'])) {
+                case 'Muy bajo':
+                    return {
+                pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,150,65,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Bajo':
+                    return {
+                pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,217,106,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Medio':
+                    return {
+                pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,192,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Alto':
+                    return {
+                pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,174,97,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Muy alto':
+                    return {
+                pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_GradodeMarginacinUrbanaCONAPO2010_1');
+        map.getPane('pane_GradodeMarginacinUrbanaCONAPO2010_1').style.zIndex = 401;
+        map.getPane('pane_GradodeMarginacinUrbanaCONAPO2010_1').style['mix-blend-mode'] = 'normal';
+        var layer_GradodeMarginacinUrbanaCONAPO2010_1 = new L.geoJson(json_GradodeMarginacinUrbanaCONAPO2010_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GradodeMarginacinUrbanaCONAPO2010_1',
+            layerName: 'layer_GradodeMarginacinUrbanaCONAPO2010_1',
+            pane: 'pane_GradodeMarginacinUrbanaCONAPO2010_1',
+            onEachFeature: pop_GradodeMarginacinUrbanaCONAPO2010_1,
+            style: style_GradodeMarginacinUrbanaCONAPO2010_1_0,
+        });
+        bounds_group.addLayer(layer_GradodeMarginacinUrbanaCONAPO2010_1);
+        map.addLayer(layer_GradodeMarginacinUrbanaCONAPO2010_1);
+        function pop_Carpetasabiertasporfeminicidioporcolonia20162020_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MUNICIPIO'] !== null ? autolinker.link(feature.properties['MUNICIPIO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOMBRE'] !== null ? autolinker.link(feature.properties['NOMBRE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLASIFICAC'] !== null ? autolinker.link(feature.properties['CLASIFICAC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CP'] !== null ? autolinker.link(feature.properties['CP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OTROS_CP'] !== null ? autolinker.link(feature.properties['OTROS_CP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CONTROL'] !== null ? autolinker.link(feature.properties['CONTROL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FEMINICID'] !== null ? autolinker.link(feature.properties['FEMINICID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Carpetasabiertasporfeminicidioporcolonia20162020_2_0(feature) {
+            if (feature.properties['FEMINICID'] >= 1.000000 && feature.properties['FEMINICID'] <= 2.000000 ) {
+                return {
+                pane: 'pane_Carpetasabiertasporfeminicidioporcolonia20162020_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.769)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(174,40,146,0.769)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['FEMINICID'] >= 2.000000 && feature.properties['FEMINICID'] <= 2.000000 ) {
+                return {
+                pane: 'pane_Carpetasabiertasporfeminicidioporcolonia20162020_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.769)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(174,40,146,0.769)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Carpetasabiertasporfeminicidioporcolonia20162020_2');
+        map.getPane('pane_Carpetasabiertasporfeminicidioporcolonia20162020_2').style.zIndex = 402;
+        map.getPane('pane_Carpetasabiertasporfeminicidioporcolonia20162020_2').style['mix-blend-mode'] = 'normal';
+        var layer_Carpetasabiertasporfeminicidioporcolonia20162020_2 = new L.geoJson(json_Carpetasabiertasporfeminicidioporcolonia20162020_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Carpetasabiertasporfeminicidioporcolonia20162020_2',
+            layerName: 'layer_Carpetasabiertasporfeminicidioporcolonia20162020_2',
+            pane: 'pane_Carpetasabiertasporfeminicidioporcolonia20162020_2',
+            onEachFeature: pop_Carpetasabiertasporfeminicidioporcolonia20162020_2,
+            style: style_Carpetasabiertasporfeminicidioporcolonia20162020_2_0,
+        });
+        bounds_group.addLayer(layer_Carpetasabiertasporfeminicidioporcolonia20162020_2);
+        function pop_EDEFeminicidios201615_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meanx'] !== null ? autolinker.link(feature.properties['meanx'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meany'] !== null ? autolinker.link(feature.properties['meany'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorangle'] !== null ? autolinker.link(feature.properties['majorangle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['directiond'] !== null ? autolinker.link(feature.properties['directiond'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorsd'] !== null ? autolinker.link(feature.properties['majorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['minorsd'] !== null ? autolinker.link(feature.properties['minorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eccentrici'] !== null ? autolinker.link(feature.properties['eccentrici'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EDEFeminicidios201615_3_0() {
+            return {
+                pane: 'pane_EDEFeminicidios201615_3',
+                opacity: 1,
+                color: 'rgba(196,6,9,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 6.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(125,139,143,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EDEFeminicidios201615_3');
+        map.getPane('pane_EDEFeminicidios201615_3').style.zIndex = 403;
+        map.getPane('pane_EDEFeminicidios201615_3').style['mix-blend-mode'] = 'normal';
+        var layer_EDEFeminicidios201615_3 = new L.geoJson(json_EDEFeminicidios201615_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EDEFeminicidios201615_3',
+            layerName: 'layer_EDEFeminicidios201615_3',
+            pane: 'pane_EDEFeminicidios201615_3',
+            onEachFeature: pop_EDEFeminicidios201615_3,
+            style: style_EDEFeminicidios201615_3_0,
+        });
+        bounds_group.addLayer(layer_EDEFeminicidios201615_3);
+        map.addLayer(layer_EDEFeminicidios201615_3);
+        function pop_EDEFeminicidios201728_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meanx'] !== null ? autolinker.link(feature.properties['meanx'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meany'] !== null ? autolinker.link(feature.properties['meany'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorangle'] !== null ? autolinker.link(feature.properties['majorangle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['directiond'] !== null ? autolinker.link(feature.properties['directiond'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorsd'] !== null ? autolinker.link(feature.properties['majorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['minorsd'] !== null ? autolinker.link(feature.properties['minorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eccentrici'] !== null ? autolinker.link(feature.properties['eccentrici'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EDEFeminicidios201728_4_0() {
+            return {
+                pane: 'pane_EDEFeminicidios201728_4',
+                opacity: 1,
+                color: 'rgba(174,40,146,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 11.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,82,45,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EDEFeminicidios201728_4');
+        map.getPane('pane_EDEFeminicidios201728_4').style.zIndex = 404;
+        map.getPane('pane_EDEFeminicidios201728_4').style['mix-blend-mode'] = 'normal';
+        var layer_EDEFeminicidios201728_4 = new L.geoJson(json_EDEFeminicidios201728_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EDEFeminicidios201728_4',
+            layerName: 'layer_EDEFeminicidios201728_4',
+            pane: 'pane_EDEFeminicidios201728_4',
+            onEachFeature: pop_EDEFeminicidios201728_4,
+            style: style_EDEFeminicidios201728_4_0,
+        });
+        bounds_group.addLayer(layer_EDEFeminicidios201728_4);
+        map.addLayer(layer_EDEFeminicidios201728_4);
+        function pop_EDEFeminicidios201828_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meanx'] !== null ? autolinker.link(feature.properties['meanx'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meany'] !== null ? autolinker.link(feature.properties['meany'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorangle'] !== null ? autolinker.link(feature.properties['majorangle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['directiond'] !== null ? autolinker.link(feature.properties['directiond'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorsd'] !== null ? autolinker.link(feature.properties['majorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['minorsd'] !== null ? autolinker.link(feature.properties['minorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eccentrici'] !== null ? autolinker.link(feature.properties['eccentrici'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EDEFeminicidios201828_5_0() {
+            return {
+                pane: 'pane_EDEFeminicidios201828_5',
+                opacity: 1,
+                color: 'rgba(13,8,135,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 11.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(13,8,135,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EDEFeminicidios201828_5');
+        map.getPane('pane_EDEFeminicidios201828_5').style.zIndex = 405;
+        map.getPane('pane_EDEFeminicidios201828_5').style['mix-blend-mode'] = 'normal';
+        var layer_EDEFeminicidios201828_5 = new L.geoJson(json_EDEFeminicidios201828_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EDEFeminicidios201828_5',
+            layerName: 'layer_EDEFeminicidios201828_5',
+            pane: 'pane_EDEFeminicidios201828_5',
+            onEachFeature: pop_EDEFeminicidios201828_5,
+            style: style_EDEFeminicidios201828_5_0,
+        });
+        bounds_group.addLayer(layer_EDEFeminicidios201828_5);
+        map.addLayer(layer_EDEFeminicidios201828_5);
+        function pop_EDEFeminicidios20197_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meanx'] !== null ? autolinker.link(feature.properties['meanx'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['meany'] !== null ? autolinker.link(feature.properties['meany'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorangle'] !== null ? autolinker.link(feature.properties['majorangle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['directiond'] !== null ? autolinker.link(feature.properties['directiond'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['majorsd'] !== null ? autolinker.link(feature.properties['majorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['minorsd'] !== null ? autolinker.link(feature.properties['minorsd'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['eccentrici'] !== null ? autolinker.link(feature.properties['eccentrici'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EDEFeminicidios20197_6_0() {
+            return {
+                pane: 'pane_EDEFeminicidios20197_6',
+                opacity: 1,
+                color: 'rgba(196,147,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,60,57,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EDEFeminicidios20197_6');
+        map.getPane('pane_EDEFeminicidios20197_6').style.zIndex = 406;
+        map.getPane('pane_EDEFeminicidios20197_6').style['mix-blend-mode'] = 'normal';
+        var layer_EDEFeminicidios20197_6 = new L.geoJson(json_EDEFeminicidios20197_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EDEFeminicidios20197_6',
+            layerName: 'layer_EDEFeminicidios20197_6',
+            pane: 'pane_EDEFeminicidios20197_6',
+            onEachFeature: pop_EDEFeminicidios20197_6,
+            style: style_EDEFeminicidios20197_6_0,
+        });
+        bounds_group.addLayer(layer_EDEFeminicidios20197_6);
+        map.addLayer(layer_EDEFeminicidios20197_6);
+        function pop_FeminicidiosLen20162020_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['timestamp'] !== null ? autolinker.link(feature.properties['timestamp'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['begin'] !== null ? autolinker.link(feature.properties['begin'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['end'] !== null ? autolinker.link(feature.properties['end'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['altitudeMo'] !== null ? autolinker.link(feature.properties['altitudeMo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tessellate'] !== null ? autolinker.link(feature.properties['tessellate'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['extrude'] !== null ? autolinker.link(feature.properties['extrude'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['visibility'] !== null ? autolinker.link(feature.properties['visibility'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['drawOrder'] !== null ? autolinker.link(feature.properties['drawOrder'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['icon'] !== null ? autolinker.link(feature.properties['icon'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Descripci_'] !== null ? autolinker.link(feature.properties['Descripci_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['descript_1'] !== null ? autolinker.link(feature.properties['descript_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DIA_NOCHE'] !== null ? autolinker.link(feature.properties['DIA_NOCHE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['HORA_ENCUE'] !== null ? autolinker.link(feature.properties['HORA_ENCUE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CALLE_CASA'] !== null ? autolinker.link(feature.properties['CALLE_CASA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ABIERT_CER'] !== null ? autolinker.link(feature.properties['ABIERT_CER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ZAC'] !== null ? autolinker.link(feature.properties['ZAC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEMPLO'] !== null ? autolinker.link(feature.properties['TEMPLO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PARENTESCO'] !== null ? autolinker.link(feature.properties['PARENTESCO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ACT_L_I'] !== null ? autolinker.link(feature.properties['ACT_L_I'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Hechos'] !== null ? autolinker.link(feature.properties['Hechos'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitud'] !== null ? autolinker.link(feature.properties['Latitud'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitud'] !== null ? autolinker.link(feature.properties['Longitud'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LATITUDE'] !== null ? autolinker.link(feature.properties['LATITUDE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LONGITUDE'] !== null ? autolinker.link(feature.properties['LONGITUDE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['EXACTO'] !== null ? autolinker.link(feature.properties['EXACTO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URL'] !== null ? autolinker.link(feature.properties['URL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Cluster_ID'] !== null ? autolinker.link(feature.properties['Cluster_ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FeminicidiosLen20162020_7_0() {
+            return {
+                pane: 'pane_FeminicidiosLen20162020_7',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FeminicidiosLen20162020_7');
+        map.getPane('pane_FeminicidiosLen20162020_7').style.zIndex = 407;
+        map.getPane('pane_FeminicidiosLen20162020_7').style['mix-blend-mode'] = 'normal';
+        var layer_FeminicidiosLen20162020_7 = new L.geoJson(json_FeminicidiosLen20162020_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FeminicidiosLen20162020_7',
+            layerName: 'layer_FeminicidiosLen20162020_7',
+            pane: 'pane_FeminicidiosLen20162020_7',
+            onEachFeature: pop_FeminicidiosLen20162020_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FeminicidiosLen20162020_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FeminicidiosLen20162020_7);
+        map.addLayer(layer_FeminicidiosLen20162020_7);
+        function pop_ZonasdeAtencinPrioritaria2018_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cve_mun'] !== null ? autolinker.link(feature.properties['cve_mun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nom_mun'] !== null ? autolinker.link(feature.properties['nom_mun'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cve_loc'] !== null ? autolinker.link(feature.properties['cve_loc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nom_loc'] !== null ? autolinker.link(feature.properties['nom_loc'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['clave_ageb'] !== null ? autolinker.link(feature.properties['clave_ageb'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['pobtot'] !== null ? autolinker.link(feature.properties['pobtot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['vivtot'] !== null ? autolinker.link(feature.properties['vivtot'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        var pattern_ZonasdeAtencinPrioritaria2018_8_0 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_ZonasdeAtencinPrioritaria2018_8_0.addTo(map);
+        function style_ZonasdeAtencinPrioritaria2018_8_0() {
+            return {
+                pane: 'pane_ZonasdeAtencinPrioritaria2018_8',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_ZonasdeAtencinPrioritaria2018_8_0,
+                interactive: true,
+            }
+        }
+        var pattern_ZonasdeAtencinPrioritaria2018_8_1 = new L.StripePattern({
+            weight: 0.3,
+            spaceWeight: 2.0,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_ZonasdeAtencinPrioritaria2018_8_1.addTo(map);
+        function style_ZonasdeAtencinPrioritaria2018_8_1() {
+            return {
+                pane: 'pane_ZonasdeAtencinPrioritaria2018_8',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_ZonasdeAtencinPrioritaria2018_8_1,
+                interactive: true,
+            }
+        }
+        function style_ZonasdeAtencinPrioritaria2018_8_2() {
+            return {
+                pane: 'pane_ZonasdeAtencinPrioritaria2018_8',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ZonasdeAtencinPrioritaria2018_8');
+        map.getPane('pane_ZonasdeAtencinPrioritaria2018_8').style.zIndex = 408;
+        map.getPane('pane_ZonasdeAtencinPrioritaria2018_8').style['mix-blend-mode'] = 'normal';
+        var layer_ZonasdeAtencinPrioritaria2018_8 = new L.geoJson.multiStyle(json_ZonasdeAtencinPrioritaria2018_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZonasdeAtencinPrioritaria2018_8',
+            layerName: 'layer_ZonasdeAtencinPrioritaria2018_8',
+            pane: 'pane_ZonasdeAtencinPrioritaria2018_8',
+            onEachFeature: pop_ZonasdeAtencinPrioritaria2018_8,
+            styles: [style_ZonasdeAtencinPrioritaria2018_8_0,style_ZonasdeAtencinPrioritaria2018_8_1,style_ZonasdeAtencinPrioritaria2018_8_2,]
+        });
+        bounds_group.addLayer(layer_ZonasdeAtencinPrioritaria2018_8);
+        map.addLayer(layer_ZonasdeAtencinPrioritaria2018_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/ZonasdeAtencinPrioritaria2018_8.png" /> Zonas de Atención Prioritaria 2018': layer_ZonasdeAtencinPrioritaria2018_8,'<img src="legend/FeminicidiosLen20162020_7.png" /> Femi(ni)cidios León 2016-2020': layer_FeminicidiosLen20162020_7,'<img src="legend/EDEFeminicidios20197_6.png" /> EDE Femi(ni)cidios 2019 (7%)': layer_EDEFeminicidios20197_6,'<img src="legend/EDEFeminicidios201828_5.png" /> EDE Femi(ni)cidios 2018 (28%)': layer_EDEFeminicidios201828_5,'<img src="legend/EDEFeminicidios201728_4.png" /> EDE Femi(ni)cidios 2017 (28%)': layer_EDEFeminicidios201728_4,'<img src="legend/EDEFeminicidios201615_3.png" /> EDE Femi(ni)cidios 2016 (15%)': layer_EDEFeminicidios201615_3,'Carpetas abiertas por feminicidio por colonia 2016-2020<br /><table><tr><td style="text-align: center;"><img src="legend/Carpetasabiertasporfeminicidioporcolonia20162020_2_1002000.png" /></td><td>1,00 - 2,00</td></tr><tr><td style="text-align: center;"><img src="legend/Carpetasabiertasporfeminicidioporcolonia20162020_2_2002001.png" /></td><td>2,00 - 2,00</td></tr></table>': layer_Carpetasabiertasporfeminicidioporcolonia20162020_2,'Grado de Marginación Urbana CONAPO 2010<br /><table><tr><td style="text-align: center;"><img src="legend/GradodeMarginacinUrbanaCONAPO2010_1_Muybajo0.png" /></td><td>Muy bajo</td></tr><tr><td style="text-align: center;"><img src="legend/GradodeMarginacinUrbanaCONAPO2010_1_Bajo1.png" /></td><td>Bajo</td></tr><tr><td style="text-align: center;"><img src="legend/GradodeMarginacinUrbanaCONAPO2010_1_Medio2.png" /></td><td>Medio</td></tr><tr><td style="text-align: center;"><img src="legend/GradodeMarginacinUrbanaCONAPO2010_1_Alto3.png" /></td><td>Alto</td></tr><tr><td style="text-align: center;"><img src="legend/GradodeMarginacinUrbanaCONAPO2010_1_Muyalto4.png" /></td><td>Muy alto</td></tr></table>': layer_GradodeMarginacinUrbanaCONAPO2010_1,'<img src="legend/PermetromunicipaldeLen_0.png" /> Perímetro municipal de León': layer_PermetromunicipaldeLen_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        resetLabels([layer_EDEFeminicidios201615_3]);
+        map.on("zoomend", function(){
+            resetLabels([layer_EDEFeminicidios201615_3]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_EDEFeminicidios201615_3]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_EDEFeminicidios201615_3]);
+        });
+        </script>
+    </body>
+</html>
